@@ -1,0 +1,780 @@
+<html><head><base href="https://warzone-elite-tools.net/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Strategic Boost - Advanced Warfare Solutions</title><style>
+    :root {
+        --primary-color: #0f0;
+        --secondary-color: #00fff2;
+        --tertiary-color: #ff00ff;
+        --background-color: #000;
+        --text-color: #0f0;
+        --accent-color: #111;
+    }
+    body {
+        font-family: 'Roboto Mono', 'Courier New', monospace;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        line-height: 1.6;
+        cursor: crosshair; 
+    }
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://example.com/gaming-background.jpg');
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.3) hue-rotate(90deg);
+        z-index: -2;
+    }
+    body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+            0deg,
+            rgba(0, 255, 0, 0.15),
+            rgba(0, 255, 0, 0.15) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+        pointer-events: none;
+        z-index: 9999;
+    }
+    #bg-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.5;
+    }
+    header {
+        background-color: var(--accent-color);
+        padding: 20px 0;
+        text-align: center;
+        border-bottom: 2px solid var(--primary-color);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    .logo {
+        display: inline-block;
+        margin-right: 20px;
+        vertical-align: middle;
+    }
+    .logo svg {
+        animation: rotate 10s linear infinite;
+    }
+    @keyframes rotate {
+        100% { transform: rotate(360deg); }
+    }
+    h1, h2, h3 {
+        font-family: 'Orbitron', sans-serif;
+        letter-spacing: 2px;
+    }
+    h1 {
+        font-size: 3.5em;
+        margin: 0;
+        text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
+    }
+    nav {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    nav a {
+        color: var(--primary-color);
+        text-decoration: none;
+        margin: 10px 15px;
+        font-size: 1.2em;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    nav a::before {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--primary-color);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+    nav a:hover::before {
+        transform: scaleX(1);
+    }
+    nav a:hover {
+        color: #fff;
+        text-shadow: 0 0 10px var(--primary-color);
+    }
+    .glitch {
+        position: relative;
+    }
+    .glitch-effect {
+        position: relative;
+        animation: glitch 3s infinite;
+    }
+    .glitch-effect::before,
+    .glitch-effect::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .glitch-effect::before {
+        left: 2px;
+        text-shadow: -2px 0 #ff00ff;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+    .glitch-effect::after {
+        left: -2px;
+        text-shadow: -2px 0 #00fff2;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+    @keyframes glitch {
+        2%, 64% { transform: translate(2px,0) skew(0deg); }
+        4%, 60% { transform: translate(-2px,0) skew(0deg); }
+        62% { transform: translate(0,0) skew(5deg); }
+    }
+    @keyframes glitch-anim {
+        0% { clip: rect(16px, 9999px, 78px, 0); }
+        20% { clip: rect(44px, 9999px, 56px, 0); }
+        40% { clip: rect(89px, 9999px, 98px, 0); }
+        60% { clip: rect(12px, 9999px, 34px, 0); }
+        80% { clip: rect(67px, 9999px, 76px, 0); }
+        100% { clip: rect(23px, 9999px, 45px, 0); }
+    }
+    .software-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+    .software-item {
+        background-color: var(--accent-color);
+        border: 1px solid var(--primary-color);
+        padding: 30px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+    }
+    .software-item:hover {
+        transform: translateY(-15px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(15, 255, 15, 0.6);
+        background-color: rgba(17, 17, 17, 0.9);
+    }
+    .software-item::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(transparent, rgba(15, 255, 15, 0.1), transparent 30%);
+        animation: rotate 4s linear infinite;
+    }
+    .software-item::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, transparent 65%, rgba(15, 255, 15, 0.1) 100%);
+        transition: all 0.3s ease;
+    }
+    .software-item:hover::after {
+        background: linear-gradient(45deg, transparent 40%, rgba(15, 255, 15, 0.2) 100%);
+    }
+    @keyframes rotate {
+        100% { transform: rotate(1turn); }
+    }
+    .software-item h3 {
+        color: var(--primary-color);
+        margin-top: 0;
+        font-size: 1.8em;
+    }
+    .software-item p {
+        margin-bottom: 20px;
+        font-size: 1.1em;
+    }
+    .cta-button {
+        display: inline-block;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        color: var(--background-color);
+        padding: 12px 24px;
+        text-decoration: none;
+        font-weight: bold;
+        border: 2px solid var(--primary-color);
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+        animation: pulse 2s infinite;
+        box-shadow: 0 0 15px var(--primary-color);
+        transition: all 0.3s ease;
+    }
+    .cta-button:hover {
+        background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+        transform: scale(1.05);
+        box-shadow: 0 0 25px var(--primary-color);
+    }
+    .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent
+        );
+        transition: all 0.6s;
+    }
+    .cta-button:hover::before {
+        left: 100%;
+    }
+    #cursor {
+        display: inline-block;
+        width: 10px;
+        height: 20px;
+        background-color: var(--primary-color);
+        animation: blink 0.7s infinite;
+    }
+    #cursor-particles {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+    }
+    @keyframes blink {
+        0% { opacity: 0; }
+        50% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+    #intro {
+        text-align: center;
+        margin: 60px 0;
+    }
+    #intro-text {
+        font-size: 1.2em;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    #intro h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+    .features {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 60px;
+    }
+    .feature {
+        flex-basis: calc(33.333% - 40px);
+        margin: 20px;
+        text-align: center;
+    }
+    .feature i {
+        font-size: 3em;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+    }
+    .feature h3 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+    footer {
+        background-color: var(--accent-color);
+        color: var(--text-color);
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 60px;
+    }
+    .social-links {
+        margin-top: 20px;
+    }
+    .social-links a {
+        color: var(--primary-color);
+        font-size: 1.5em;
+        margin: 0 10px;
+        transition: color 0.3s ease;
+    }
+    .social-links a:hover {
+        color: #fff;
+    }
+    .testimonial-slider {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .testimonial-slider::-webkit-scrollbar {
+        display: none;
+    }
+    .testimonial {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+        padding: 20px;
+        background-color: var(--accent-color);
+        border: 1px solid var(--primary-color);
+        margin: 10px;
+    }
+    .testimonial p {
+        font-style: italic;
+        margin-bottom: 10px;
+    }
+    .testimonial .author {
+        color: var(--primary-color);
+        font-weight: bold;
+    }
+    .chat-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 0 20px rgba(15, 255, 15, 0.5);
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(15, 255, 15, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 15px rgba(15, 255, 15, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(15, 255, 15, 0);
+        }
+    }
+    .chat-button i {
+        font-size: 24px;
+        color: var(--background-color);
+    }
+    .newsletter-form {
+        margin-top: 40px;
+        text-align: center;
+        background-color: var(--accent-color);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(15, 255, 15, 0.2);
+    }
+    .newsletter-form h3 {
+        margin-bottom: 20px;
+    }
+    .newsletter-form input[type="email"] {
+        padding: 12px;
+        width: 300px;
+        margin-right: 10px;
+        background-color: var(--background-color);
+        border: 1px solid var(--primary-color);
+        color: var(--text-color);
+        border-radius: 5px;
+    }
+    .newsletter-form .cta-button {
+        padding: 12px 24px;
+        border-radius: 5px;
+    }
+    .countdown {
+        text-align: center;
+        font-size: 2em;
+        margin-top: 20px;
+        color: var(--primary-color);
+    }
+    .hud-element {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: rgba(0, 255, 0, 0.2);
+        border: 1px solid var(--primary-color);
+        padding: 10px;
+        font-family: 'Orbitron', sans-serif;
+        z-index: 1000;
+    }
+    .hud-item {
+        margin-bottom: 5px;
+    }
+    @media (max-width: 768px) {
+        .software-list {
+            grid-template-columns: 1fr;
+        }
+        .feature {
+            flex-basis: 100%;
+        }
+    }
+    .rellax {
+        transition: transform 0.2s;
+    }
+</style><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script></head><body>
+    <div id="bg-canvas"></div>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <svg width="50" height="50" viewBox="0 0 100 100">
+                    <polygon points="50,10 90,90 10,90" fill="none" stroke="var(--primary-color)" stroke-width="5"/>
+                    <circle cx="50" cy="50" r="20" fill="none" stroke="var(--secondary-color)" stroke-width="5"/>
+                </svg>
+            </div>
+            <h1 class="glitch glitch-effect" data-text="Strategic Boost">Strategic Boost</h1>
+            <nav>
+                <a href="#intro">Home</a>
+                <a href="#features">Features</a>
+                <a href="#software">Software</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="intro">
+            <h2>> <span id="typed"></span><span id="cursor"></span></h2>
+            <p id="intro-text" class="rellax" data-rellax-speed="2"></p>
+        </section>
+
+        <section id="features" class="parallax-container">
+            <h2>> Why Choose Strategic Boost? <span id="cursor"></span></h2>
+            <div class="features">
+                <div class="feature" data-aos="fade-up">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Enhanced Gameplay</h3>
+                    <p>Experience smoother, more responsive controls.</p>
+                </div>
+                <div class="feature" data-aos="fade-up">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Undetectable</h3>
+                    <p>Our software operates silently, keeping you safe from anti-cheat systems.</p>
+                </div>
+                <div class="feature" data-aos="fade-up">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Performance Boost</h3>
+                    <p>Optimize your game for maximum FPS and minimal latency.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="software">
+            <h2>> Elite Software Arsenal <span id="cursor"></span></h2>
+            <div class="software-list">
+                <div class="software-item">
+                    <h3>Aim Assist Pro</h3>
+                    <p>Take your accuracy to superhuman levels with our advanced aim assistance software. Customizable settings allow you to fine-tune your precision for any weapon or situation.</p>
+                    <a href="/download/aim-assist-pro" class="cta-button">Download Now</a>
+                </div>
+                <div class="software-item">
+                    <h3>Recoil Master</h3>
+                    <p>Say goodbye to weapon recoil. Our intelligent system adapts in real-time to your loadout and playstyle, ensuring pinpoint accuracy even during sustained fire.</p>
+                    <a href="/download/recoil-master" class="cta-button">Download Now</a>
+                </div>
+                <div class="software-item">
+                    <h3>Tactical HUD Overlay</h3>
+                    <p>Gain a strategic edge with our customizable heads-up display. Access critical information, track enemy movements, and coordinate with your team like never before.</p>
+                    <a href="/download/tactical-hud" class="cta-button">Download Now</a>
+                </div>
+                <div class="software-item">
+                    <h3>Sound Radar</h3>
+                    <p>Hear the unseeable. Our advanced audio processing gives you superhuman hearing, allowing you to detect and locate enemies with unprecedented accuracy.</p>
+                    <a href="/download/sound-radar" class="cta-button">Download Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <h2>> What Our Users Say <span id="cursor"></span></h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p>"Strategic Boost completely transformed my gameplay. I've never dominated like this before!"</p>
+                    <span class="author">- xXShadowSniperXx</span>
+                </div>
+                <div class="testimonial">
+                    <p>"The Tactical HUD Overlay gives me an insane advantage. It's like I can see the future!"</p>
+                    <span class="author">- EliteWarrior420</span>
+                </div>
+                <div class="testimonial">
+                    <p>"Sound Radar is a game-changer. I can hear enemies from across the map now!"</p>
+                    <span class="author">- StealthMaster99</span>
+                </div>
+            </div>
+        </section>
+
+        <div id="countdown" class="countdown">
+            <span id="days"></span>d
+            <span id="hours"></span>h
+            <span id="minutes"></span>m
+            <span id="seconds"></span>s
+        </div>
+
+        <div class="hud-element">
+            <div class="hud-item">FPS: <span id="fps-counter">60</span></div>
+            <div class="hud-item">Players Online: <span id="players-online">1337</span></div>
+        </div>
+    </main>
+
+    <div class="chat-button">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div id="chat-window" class="chat-window">
+        <div id="chat-messages"></div>
+        <input type="text" id="chat-input" placeholder="Type your message...">
+        <button id="send-button">Send</button>
+    </div>
+
+    <form class="newsletter-form">
+        <h3>Subscribe to Our Newsletter</h3>
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit" class="cta-button">Subscribe</button>
+    </form>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Strategic Boost. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://twitter.com/strategicboost"><i class="fab fa-twitter"></i></a>
+                <a href="https://discord.gg/strategicboost"><i class="fab fa-discord"></i></a>
+                <a href="https://youtube.com/strategicboost"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cursor-particles"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.5.0/parallax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        function createParticles() {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.id = 'particles-js';
+            document.body.appendChild(particlesContainer);
+
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#00ff00" },
+                    shape: { type: "triangle" },
+                    opacity: { value: 0.5, random: false },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: "#00ff00", opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                    modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } }
+                },
+                retina_detect: true
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('bg-canvas').appendChild(renderer.domElement);
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const size = 100;
+            for (let x = -size; x <= size; x += 2) {
+                for (let y = -size; y <= size; y += 2) {
+                    vertices.push(x, y, 0);
+                }
+            }
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+            const material = new THREE.PointsMaterial({ color: 0x00ff00, size: 0.5 });
+            const points = new THREE.Points(geometry, material);
+            scene.add(points);
+
+            camera.position.z = 50;
+
+            const matrixChars = '0123456789ABCDEF';
+            const matrixCanvas = document.createElement('canvas');
+            const matrixCtx = matrixCanvas.getContext('2d');
+            matrixCanvas.width = window.innerWidth;
+            matrixCanvas.height = window.innerHeight;
+
+            const columns = matrixCanvas.width / 20;
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+
+            function drawMatrix() {
+                matrixCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+                matrixCtx.fillStyle = '#0f0';
+                matrixCtx.font = '15px monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                    matrixCtx.fillText(text, i * 20, drops[i] * 20);
+                    if (drops[i] * 20 > matrixCanvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+
+            const matrixTexture = new THREE.CanvasTexture(matrixCanvas);
+            const matrixMaterial = new THREE.MeshBasicMaterial({ map: matrixTexture, transparent: true, opacity: 0.5 });
+            const matrixPlane = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), matrixMaterial);
+            matrixPlane.position.z = -10;
+            scene.add(matrixPlane);
+
+            function animate() {
+                requestAnimationFrame(animate);
+                points.rotation.x += 0.002;
+                points.rotation.y += 0.002;
+                points.rotation.z += 0.001;
+                points.geometry.attributes.position.array.forEach((vertex, index) => {
+                    if (index % 3 === 2) {
+                        vertex += Math.sin(Date.now() * 0.002 + points.geometry.attributes.position.array[index - 2] + points.geometry.attributes.position.array[index - 1]) * 3;
+                    }
+                });
+                points.geometry.attributes.position.needsUpdate = true;
+                matrixPlane.rotation.z -= 0.0003;
+                drawMatrix();
+                matrixTexture.needsUpdate = true;
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                matrixCanvas.width = window.innerWidth;
+                matrixCanvas.height = window.innerHeight;
+            });
+
+            const typed = new Typed('#typed', {
+                strings: ['Welcome to the Future of Warfare', 'Dominate the Battlefield', 'Unleash Your Potential'],
+                typeSpeed: 50,
+                backSpeed: 30,
+                loop: true
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+
+            const introText = "Elevate your Call of Duty experience with Strategic Boost. Our cutting-edge software suite is designed to push the boundaries of what's possible in modern warfare. Dominate the battlefield, outsmart your opponents, and achieve victory like never before.";
+            let i = 0;
+            function typeIntro() {
+                if (i < introText.length) {
+                    document.getElementById("intro-text").innerHTML += introText.charAt(i);
+                    i++;
+                    setTimeout(typeIntro, 20);
+                }
+            }
+            typeIntro();
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const targetDate = new Date(now + 7 * 24 * 60 * 60 * 1000).getTime();
+                const difference = targetDate - now;
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours;
+                document.getElementById('minutes').innerText = minutes;
+                document.getElementById('seconds').innerText = seconds;
+            }
+            setInterval(updateCountdown, 1000);
+
+            var parallaxScene = document.getElementById('features');
+            var parallaxInstance = new Parallax(parallaxScene);
+
+            document.querySelector('.chat-button').addEventListener('click', () => {
+                document.getElementById('chat-window').classList.toggle('active');
+            });
+
+            document.getElementById('send-button').addEventListener('click', () => {
+                const input = document.getElementById('chat-input');
+                const message = input.value;
+                if (message) {
+                    const messageElement = document.createElement('div');
+                    messageElement.textContent = message;
+                    document.getElementById('chat-messages').appendChild(messageElement);
+                    input.value = '';
+                }
+            });
+
+            const testimonialSlider = document.querySelector('.testimonial-slider');
+            let scrollPosition = 0;
+            const scrollSpeed = 1;
+
+            function autoScroll() {
+                scrollPosition += scrollSpeed;
+                if (scrollPosition >= testimonialSlider.scrollWidth / 2) {
+                    scrollPosition = 0;
+                }
+                testimonialSlider.scrollTo(scrollPosition, 0);
+                requestAnimationFrame(autoScroll);
+            }
+
+            autoScroll();
+
+            document.addEventListener('mousemove', (e) => {
+                const particles = document.getElementById('cursor-particles');
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = e.clientX + 'px';
+                particle.style.top = e.clientY + 'px';
+                particles.appendChild(particle);
+                setTimeout(() => particle.remove(), 1000);
+            });
+        });
+    </script>
+</body></html>
